@@ -1,0 +1,50 @@
+<MapName>
+<Width>
+<Height>
+<MapLayout>
+
+**********
+
+- For example:
+
+Stage1
+	12
+	7
+############
+#..*....#.*#
+##..***#P**#
+#..*....#.*#
+#**.*#...*.#
+#S.*...*.*.#
+############
+
+
+
+- Legend:
+
+# = Wall
+. = empty
+* = Movable rock
+
+S = Start
+P = Pill (end)
+
+
+U = up constraint
+D = down constraint
+L = left constraint
+R = right constraint
+
+
+
+
+
+12
+7
+############
+#..........#
+#..........#
+#.....S....#
+#..........#
+#..........#
+############
