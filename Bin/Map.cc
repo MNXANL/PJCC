@@ -4,13 +4,13 @@
 Map::Map() {
 	h = w = 0;
 	M = Matrix(0, Row(0));
-	P.x = P.y = 0;
+	P.x = P.y = -1;
 }
 
 Map::Map(int& x, int& y) {
 	h = x;			w = y;
 	M = Matrix(x, Row(y));
-	P.x = P.y = 0;
+	P.x = P.y = -1;
 }
 
 void Map::readMatrix() {
@@ -32,7 +32,7 @@ void Map::printCurrentScreen() {
 		}
 		cout << endl;
 	}
-	cout << "PLAYER: " << P.x << " - " << P.y << endl;
+	cout << "PLAYER: " << P.x << " | " << P.y << endl;
 
 }
 
@@ -43,12 +43,12 @@ void victory() {
 
 
 /* 0-1 LR			2-3 UD*/
-void Map::updateMatrix(Pos& P) {
+void Map::updateMatrix(int& i) {
 	Player pl;
-	int i = pl.getInput();
+	i = pl.getInput();
 
 	cout << "Update ... i = " << i << endl;
-	if (i == KEY_UP) {
+	if (i == 0) {
 		if (M[P.x - 1][P.y] == '*' and M[P.x + 1][P.y] == '.' and M[P.x - 2][P.y] == '.') {
 			//cout << "UP" << endl;
 			M[P.x - 1][P.y] = 'S';
@@ -62,10 +62,12 @@ void Map::updateMatrix(Pos& P) {
 			P.x -= 1;
 		}
 		else if (M[P.x - 1][P.y] == 'P') {
+			M[P.x - 1][P.y] = 'P';
+			M[P.x][P.y] = '.';
 			victory();
 		}
 	}
-	if (i == KEY_DOWN) {
+	if (i == 2) {
 		if (M[P.x + 1][P.y] == '*' and M[P.x - 1][P.y] == '.' and M[P.x + 2][P.y] == '.') {
 			//cout << "DOWN" << endl;
 			M[P.x + 1][P.y] = 'S';
@@ -79,11 +81,17 @@ void Map::updateMatrix(Pos& P) {
 			P.x += 1;
 		}
 		else if (M[P.x + 1][P.y] == 'P') {
+			M[P.x + 1][P.y] = 'P';
+			M[P.x][P.y] = '.';
 			victory();
 		}
 	}
-	if (i == KEY_LEFT) {
-		if (M[P.x][P.y - 1] == '*' and M[P.x][P.y + 1] == '*' and M[P.x][P.y - 2] == '.') {
+	if (i == 1) {
+
+		//  5, 3
+
+		//  5, 2 		5, 4		5, 5
+		if (M[P.x][P.y - 1] == '*' and M[P.x][P.y + 1] == '.' and M[P.x][P.y - 2] == '.') {
 			//cout << "LEFT" << endl;
 			M[P.x][P.y - 1] = 'S';
 			M[P.x][P.y - 2] = '*';
@@ -96,11 +104,13 @@ void Map::updateMatrix(Pos& P) {
 			P.y -= 1;
 		}
 		else if (M[P.x][P.y - 1] == 'P') {
+			M[P.x][P.y - 1] = 'P';
+			M[P.x][P.y] = '.';
 			victory();
 		}
 	}
-	if (i == KEY_RIGHT) {
-		if (M[P.x][P.y + 1] == '*' and M[P.x][P.y + 1] == '*' and M[P.x][P.y + 2] == '.') {
+	if (i == 3) {
+		if (M[P.x][P.y + 1] == '*' and M[P.x][P.y - 1] == '.' and M[P.x][P.y + 2] == '.') {
 			//cout << "RIGHT" << endl;
 			M[P.x][P.y + 1] = 'S';
 			M[P.x][P.y + 2] = '*';
@@ -113,8 +123,14 @@ void Map::updateMatrix(Pos& P) {
 			P.y += 1;
 		}
 		else if (M[P.x][P.y + 1] == 'P') {
+			M[P.x][P.y + 1] = 'P';
+			M[P.x][P.y] = '.';
 			victory();
 		}
 	}
 	//else cout << "FAIL!" << endl;
+}
+
+Matrix Map::getMatrix() {
+	return M;
 }

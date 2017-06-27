@@ -5,12 +5,13 @@
 #include "Player.h"
 using namespace std;
 
+typedef vector<char> Row;
+typedef vector<Row> Matrix;
+
 struct Pos { int x;	int y; };
 
 class Map {
 private:
-	typedef vector<char> Row;
-	typedef vector<Row> Matrix;
 
 	Matrix M;
 	int h, w;	//Height Width
@@ -29,8 +30,8 @@ public:
 	//~Map();
 	void readMatrix();
 	void printCurrentScreen();
-	void updateMatrix(Pos &P);
-  
+	void updateMatrix(int &i);
+  	Matrix getMatrix();
 	
 	/* data */
 };
