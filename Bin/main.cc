@@ -11,6 +11,26 @@ SDL_Renderer *ren;
 SDL_Surface* surface;
 SDL_Surface* wallS, *groundS, *rockS, *playerS, *pillS;
 
+void close()		{
+	//Deallocate surfaces
+	SDL_FreeSurface( wallS );	
+	wallS = NULL;
+	SDL_FreeSurface( groundS );	
+	groundS = NULL;
+	SDL_FreeSurface( rockS );	
+	rockS = NULL;
+	SDL_FreeSurface( playerS );	
+	playerS = NULL;
+	SDL_FreeSurface( pillS );	
+	pillS = NULL;
+
+	//Destroy window
+	SDL_DestroyWindow( win );
+	win = NULL;
+
+	//Quit SDL subsystems
+	SDL_Quit();
+}
 
 void DisplayMatrix(vector<vector <char> > M) {
 	SDL_Rect srcrect;
@@ -38,8 +58,9 @@ void DisplayMatrix(vector<vector <char> > M) {
 
 void run(int& i) {
 	M.printCurrentScreen();
-	M.updateMatrix(i);
-	DisplayMatrix(M.getMatrix());
+	int res = M.updateMatrix(i);
+	if (res == 1) close();
+	else DisplayMatrix(M.getMatrix());
 }
 
 bool init(){
@@ -134,6 +155,10 @@ int main() {
 					i = 3;
 					break;
 
+					case SDLK_p:
+					running = false;
+					break;
+
 					default:
 					i = -1;
 					break;
@@ -144,5 +169,6 @@ int main() {
 			}
 			run(i);
 		}
+		if (!running) return 0;
 	}
 }

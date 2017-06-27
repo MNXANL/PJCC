@@ -30,7 +30,7 @@ public:
 	//~Map();
 	void readMatrix();
 	void printCurrentScreen();
-	void updateMatrix(int &i);
+	int updateMatrix(int &i);
   	Matrix getMatrix();
 	
 	/* data */

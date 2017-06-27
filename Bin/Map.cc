@@ -38,12 +38,14 @@ void Map::printCurrentScreen() {
 
 
 void victory() {
-	cout << "You got the pill! gg wp" << endl;  
+	cout << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl;
+	cout << "  L A   P A S T I L L A  " << endl << endl << endl;  
 }
 
 
 /* 0-1 LR			2-3 UD*/
-void Map::updateMatrix(int& i) {
+int Map::updateMatrix(int& i) {
 	//Player pl;
 	//i = pl.getInput();
 
@@ -64,7 +66,7 @@ void Map::updateMatrix(int& i) {
 		else if (M[P.x - 1][P.y] == 'P') {
 			M[P.x - 1][P.y] = 'P';
 			M[P.x][P.y] = '.';
-			victory();
+			victory();return 1;
 		}
 	}
 	if (i == 2) {
@@ -84,6 +86,7 @@ void Map::updateMatrix(int& i) {
 			M[P.x + 1][P.y] = 'P';
 			M[P.x][P.y] = '.';
 			victory();
+			return 1;
 		}
 	}
 	if (i == 1) {
@@ -106,7 +109,7 @@ void Map::updateMatrix(int& i) {
 		else if (M[P.x][P.y - 1] == 'P') {
 			M[P.x][P.y - 1] = 'P';
 			M[P.x][P.y] = '.';
-			victory();
+			victory();return 1;
 		}
 	}
 	if (i == 3) {
@@ -125,9 +128,10 @@ void Map::updateMatrix(int& i) {
 		else if (M[P.x][P.y + 1] == 'P') {
 			M[P.x][P.y + 1] = 'P';
 			M[P.x][P.y] = '.';
-			victory();
+			victory();return 1;
 		}
 	}
+	return 0;
 	//else cout << "FAIL!" << endl;
 }
 
