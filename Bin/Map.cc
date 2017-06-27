@@ -44,8 +44,8 @@ void victory() {
 
 /* 0-1 LR			2-3 UD*/
 void Map::updateMatrix(int& i) {
-	Player pl;
-	i = pl.getInput();
+	//Player pl;
+	//i = pl.getInput();
 
 	cout << "Update ... i = " << i << endl;
 	if (i == 0) {

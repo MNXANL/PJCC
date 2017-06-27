@@ -24,10 +24,7 @@ void Window::DisplayMatrix(vector<vector <char> > M) {
 		}
 	}
 	SDL_UpdateWindowSurface( win );
-	SDL_Delay(10000);
 }
-
-
 
 
 bool Window::init(){
@@ -121,6 +118,7 @@ Window::Window(vector<vector< char> > M) {
 	
 	DisplayMatrix(M);
 
+	SDL_Delay(2000);
 	//Free resources and close SDL
 	//close();
 }
