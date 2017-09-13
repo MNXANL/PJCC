@@ -1,7 +1,9 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 using namespace std;
 
 

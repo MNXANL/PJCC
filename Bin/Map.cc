@@ -13,10 +13,10 @@ Map::Map(int& x, int& y) {
 	P.x = P.y = -1;
 }
 
-void Map::readMatrix() {
+void Map::readMatrix(ifstream &file) {
 	for (int i = 0; i != M.size(); ++i) {
 		for (int j = 0; j != M[0].size(); ++j) {
-			cin >> M[i][j];
+			file >> M[i][j];
 			if (M[i][j] == 'S') {
 				P.x = i ; P.y = j;
 			}
@@ -32,14 +32,12 @@ void Map::printCurrentScreen() {
 		}
 		cout << endl;
 	}
-	cout << "PLAYER: " << P.x << " | " << P.y << endl;
-
+	//cout << "PLAYER: " << P.x << " | " << P.y << endl;
 }
 
 
-void victory() {
-	cout << endl << endl << endl << endl;
-	cout << endl << endl << endl << endl;
+void Map::victory() {
+	cout << endl << endl ;
 	cout << "  L A   P A S T I L L A  " << endl << endl << endl;  
 }
 
@@ -49,7 +47,7 @@ int Map::updateMatrix(int& i) {
 	//Player pl;
 	//i = pl.getInput();
 
-	cout << "Update ... i = " << i << endl;
+	//cout << "Update ... i = " << i << endl;
 	if (i == 0) {
 		if (M[P.x - 1][P.y] == '*' and M[P.x + 1][P.y] == '.' and M[P.x - 2][P.y] == '.') {
 			//cout << "UP" << endl;
@@ -66,7 +64,8 @@ int Map::updateMatrix(int& i) {
 		else if (M[P.x - 1][P.y] == 'P') {
 			M[P.x - 1][P.y] = 'P';
 			M[P.x][P.y] = '.';
-			victory();return 1;
+			victory();
+			return 1;
 		}
 	}
 	if (i == 2) {
@@ -109,7 +108,8 @@ int Map::updateMatrix(int& i) {
 		else if (M[P.x][P.y - 1] == 'P') {
 			M[P.x][P.y - 1] = 'P';
 			M[P.x][P.y] = '.';
-			victory();return 1;
+			victory();
+			return 1;
 		}
 	}
 	if (i == 3) {
@@ -128,7 +128,8 @@ int Map::updateMatrix(int& i) {
 		else if (M[P.x][P.y + 1] == 'P') {
 			M[P.x][P.y + 1] = 'P';
 			M[P.x][P.y] = '.';
-			victory();return 1;
+			victory();
+			return 1;
 		}
 	}
 	return 0;

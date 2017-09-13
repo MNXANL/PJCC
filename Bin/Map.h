@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <SDL2/SDL.h>
+#include <fstream>
+#include <string>
 #include "Player.h"
 using namespace std;
 
@@ -28,10 +30,11 @@ public:
 	Map();
 	Map(int &x, int &y);
 	//~Map();
-	void readMatrix();
+	void readMatrix(ifstream &file);
 	void printCurrentScreen();
 	int updateMatrix(int &i);
   	Matrix getMatrix();
+  	void victory();
 	
 	/* data */
 };
