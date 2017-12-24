@@ -14,11 +14,9 @@ You need to have installed SDL2 or the game won't work!
 
 ### To run execute:
 ```
-./PJCC < Maps/StageN.txt
+./PJCC 
 ```
-(Where N is a number between 1 and 4)
+And keep completing levels!
 
 ### To do (in an uncertain future):
-* Add that funky music
-* Autoload stages
-* Make it more usable
+* Add some funky music (pls halp me)
